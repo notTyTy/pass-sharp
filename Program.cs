@@ -26,27 +26,29 @@ public class password
                     }
                 }
             }
-            if(string.IsNullOrEmpty(username) is false) // will run the current container if a string is added
+            if(string.IsNullOrEmpty(username) is false)
             {
                 Console.WriteLine("Would you like a password to be generated for you? y/n only");
                 var response = Console.ReadLine().ToLower();
                 if(response == "y")
                 {
                     PasswordGen passwordCharacters = new PasswordGen();
-                    string passwordCharacterList = passwordCharacters.CharacterList;
+                    
+                    string passwordCharacterListAlpha = passwordCharacters.CharacterListAlpha;
+                    string passwordCharactersUpper = passwordCharacters.CharacterListUpper;
+                    string passwordCharactersInt = passwordCharacters.CharacterListInt;
+                    string passwordCharactersSpecial = passwordCharacters.CharacterListSpecial;
                     
                     var random = new Random();
-                    var Char = passwordCharacterList[1].ToString().Length;
-                    int numOutcomes = 15;
+                    var Char = passwordCharactersUpper[1].ToString().Length;
+                    int numOutcomes = 15; // change this value to create a new password length
                     
                     for(Char = 1; Char <= numOutcomes; Char++)
                     {
-                            var lengthRange = random.Next(0, 87);
-                            char passwordChar = passwordCharacterList[lengthRange];
+                            var lengthRange = random.Next(0, 10);
+                            char passwordChar = passwordCharactersInt[lengthRange];
                             Console.Write(passwordChar);
-                    }
-                    PasswordGen.StaticPasswordGen();
-                }
+                    }                }
                 else if(response == "n")
                 {
                     Console.WriteLine("Please input your password");
@@ -64,13 +66,10 @@ public class password
         }
     }
 }
-
 public class PasswordGen
 {
-    public string CharacterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+{}|:<>?[];,./";
-    
-    public static void StaticPasswordGen()
-    {
-        PasswordGen passwordCharacters = new PasswordGen();
-    }
+    public string CharacterListAlpha = "abcdefghijklmnopqrstuvwxyz;";
+    public string CharacterListUpper = "ABCDEFGHIJKMNOPQRSTUVWXYZ"; 
+    public string CharacterListInt = "1234567890";
+    public string CharacterListSpecial = "!@#$%^&*()-=_+[]{}|;':,./<>?";
 }
