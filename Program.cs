@@ -14,7 +14,6 @@ public class password
             {
                 if(string.IsNullOrEmpty(username) is false)
                 {
-                    string line;
                     try
                     {
                         StreamWriter sw = new StreamWriter("username.txt", true);
@@ -26,7 +25,6 @@ public class password
                         Console.WriteLine("Exception" + e.Message);
                     }
                 }
-
             }
             if(string.IsNullOrEmpty(username) is false) // will run the current container if a string is added
             {
@@ -36,22 +34,17 @@ public class password
                 {
                     PasswordGen passwordCharacters = new PasswordGen();
                     string passwordCharacterList = passwordCharacters.CharacterList;
-                    int passwordCharacterLength = passwordCharacters.CharacterList.Length;
                     
-                    var rand = new Random();
-                    int lengthRange = rand.Next(0, 53);
-                    char chosenChar = passwordCharacterList[lengthRange]; //chooses a random character using math
-                    var chosenCharStr = chosenChar.ToString();
-                    int chosenCharStrLength = chosenCharStr.Length;
+                    var random = new Random();
+                    var Char = passwordCharacterList[1].ToString().Length;
+                    int numOutcomes = 15;
                     
-                    Console.WriteLine(chosenCharStrLength);
-                    
-                    
-                    Console.WriteLine(); //random character choice works
-                    
-                    //Console.WriteLine(passwordCharacterList); //tests to see if other class works
-                    //create a class and import it here for password generation, inclusion of special characters, integers and letters
-                    
+                    for(Char = 1; Char <= numOutcomes; Char++)
+                    {
+                            var lengthRange = random.Next(0, 87);
+                            char passwordChar = passwordCharacterList[lengthRange];
+                            Console.Write(passwordChar);
+                    }
                     PasswordGen.StaticPasswordGen();
                 }
                 else if(response == "n")
@@ -74,12 +67,10 @@ public class password
 
 public class PasswordGen
 {
-    public string CharacterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    public string CharacterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+{}|:<>?[];,./";
     
     public static void StaticPasswordGen()
     {
         PasswordGen passwordCharacters = new PasswordGen();
-        string passwordCharacterList = passwordCharacters.CharacterList;
-        int passwordCharacterLength = passwordCharacterList.Length;
     }
 }
